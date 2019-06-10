@@ -8,7 +8,7 @@ Usually, companies’ 10-Ks are structured in very stable patterns, which highli
 
 2. After getting the topic loadings of each 10k file, we may able to identify similar company pairs and see why they are similar, and whether there’s any possibility of merging or acquisition.
 
-###Part 1: Data Downloading & Preprocessing
+### Part 1: Data Downloading & Preprocessing
 
 This part is implemented in get_filling.py. 
 
@@ -20,11 +20,11 @@ Since the index files are organized by quarter, there are 56 index files for the
 
 - One txt file "CIK_date.txt" for each company and each year. All files are organized in folders by year.
 
-###Part 2: Data Preprocessing & Word2Vec
+### Part 2: Data Preprocessing & Word2Vec
 
 The second step of text data preproceesing includes removing punctuations, numbers, stop-words, and changing to lowercase. For each document, the words are cleaned and collected in parallel. Then using a tool provided by the Gensim package, the words are uniquely indexed and a dictionary is formed. Based on this dictionary, we convert the documents to bag-of-words, which is also executed in parallel. Finally, using Google's pretrained word-to-vec model, we find the vector representation of each word in our dictionary, which is also executed in parallel. Using Python multiprocessing and 20 cores on a node, the whole process finished in 1 hour.
 
-####Outputs:
+#### Outputs:
 
 - filename: pickle file that contains a list of the names of the documents
 - 10k_dic: pickle file that contains a dictionary of the words and their indices. (i.e. {0:word0, 1:word1...})
