@@ -8,15 +8,15 @@ import numpy as np
 from time import time
 
 # Define the svd job for each topic, and export the topic loadings & document loadings
-def svd(d, bow, topic, topic_idx, year):
+def svd(d, bow, topic, topic_idx):
     print('Topic {:.0f} svd starting'.format(topic_idx))
     start = time()
     svd_instance = SVD_Class.SVD_Textual_Factors(bow, topic)
     topic_loading = svd_instance.topic_loading()
     document_loading = svd_instance.document_loading()
-    with open(d + '/loadings/topic_loading_' + str(year) + '_' + str(topic_idx), 'wb') as f:
+    with open(d + '/loadings/topic_loading_' + str(topic_idx), 'wb') as f:
         pickle.dump(topic_loading, f)
-    with open(d + '/loadings/document_loading_'+ str(year) + '_' + str(topic_idx), 'wb') as f:
+    with open(d + '/loadings/document_loading_' + str(topic_idx), 'wb') as f:
         pickle.dump(document_loading, f)
     del(svd_instance)
     gc.collect()
