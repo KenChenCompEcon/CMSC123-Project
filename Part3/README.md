@@ -8,10 +8,10 @@ The ‘bag of words’ file is 612MB, and the ‘topic clusters’ is 301KB, bot
 
 ### Algorithms and Implementation
 *	The magic we are going to play here is the singular value decomposition. It is known as a factorization of a matrix of any size into single vectors. This is somehow similar to the concept of Principal Component Analysis. We can get vectors of loadings that illustrate row or column importance. By obtaining the first columns of U and V, we can see which rows and columns are contribute most to the original matrix. 
-
-
+![svd](https://github.com/KenChenCompEcon/CMSC123-Project/blob/master/Part3/SVD.png?raw=true)
 
 *	Extracting the information from the two documents, we can then build matrices of such type. And these matrices are the ones we will decompose. The first column of U are the word loadings of a topic, and the first column of V are the document loadings on a topic.
+![frequency](https://github.com/KenChenCompEcon/CMSC123-Project/blob/master/Part3/Frequency%20Matrix.png?raw=true)
 
 *	For the best of our knowledge, we are unable to implement the decomposition of a matrix in a parallel fashion and took the advantage of big-data paralleled frameworks like MapReduce or MPI. But the decompositions of matrices of different topics are naturally parallelizable. So we decided to use the Python Multiprocessing to exploit the multicores of the computer. Furthermore, since the entire process is prohibitively memory consuming, we’ve requested a 8-core cluster of 30GB memory space on Google Cloud. The entire process took 2,785 seconds on google cloud.
 
